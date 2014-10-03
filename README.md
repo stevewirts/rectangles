@@ -4,10 +4,11 @@ geometry
 this is a simple but usefull library for handling many operations associated with points and rectangles.
 there is a nice example of double dispatch; see the contains function on rectangle...
 
+##var geometry = require('./geometry');
 ##var rect = new geometry.Rectangle();
 ##var point = new geometry.Point();
 
-###point functions....
+##point functions....
 
 >plus(aPoint)
 
@@ -28,7 +29,7 @@ there is a nice example of double dispatch; see the contains function on rectang
 >lessThanEqualTo(aPoint)
 
 
-###rectangle functions....
+##rectangle functions....
 >top()
 
 >left()
