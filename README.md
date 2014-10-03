@@ -10,23 +10,23 @@ there is a nice example of double dispatch; see the contains function on rectang
 
 ##point functions....
 
->plus(aPoint)
+>plus(point)
 
->minus(aPoint)
+>minus(point)
 
->min(aPoint)
+>min(point)
 
->max(aPoint)
+>max(point)
 
->distance(aPoint)
+>distance(point)
 
->greaterThan(aPoint)
+>greaterThan(point)
 
->lessThan(aPoint)
+>lessThan(point)
 
->greaterThanEqualTo(aPoint)
+>greaterThanEqualTo(point)
 
->lessThanEqualTo(aPoint)
+>lessThanEqualTo(point)
 
 
 ##rectangle functions....
@@ -42,15 +42,15 @@ there is a nice example of double dispatch; see the contains function on rectang
 
 >area()
 
->contains(aPointOrRect)
+>contains(pointOrRect)
 
 >center()
 
->union(aRectangle)
+>union(rectangle)
 
->intersect(aRectangle, ifNoneAction)
+>intersect(rectangle, ifNoneAction)
 
->intersects(aRectangle)
+>intersects(rectangle)
 
 
 
