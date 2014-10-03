@@ -18,7 +18,7 @@ point functions....
     lessThan(aPoint)
     greaterThanEqualTo(aPoint)
     lessThanEqualTo(aPoint)
-		
+
 rectangle functions....
     top()
     left()
@@ -31,3 +31,5 @@ rectangle functions....
     union(aRectangle)
     intersect(aRectangle, ifNoneAction)
     intersects(aRectangle)
+
+
