@@ -2,7 +2,6 @@ geometry
 ========
 
 this is a simple but usefull library for handling many operations associated with points and rectangles.
-
 there is a nice example of double dispatch; see the contains function on rectangle...
 
 var rect = new geometry.Rectangle();
