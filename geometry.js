@@ -48,15 +48,15 @@ Point.prototype = {
         var result = this.x <= point.x && this.y <= point.y;
         return result;
     },
-    isContainedWithinRectangle: function(aRect) {
-        var result = aRect.origin.lessThanEqualTo(this) && aRect.corner().greaterThanEqualTo(this);
+    isContainedWithinRectangle: function(rect) {
+        var result = rect.origin.lessThanEqualTo(this) && rect.corner().greaterThanEqualTo(this);
         return result;
     }
 };
 
-var Rectangle = function(x, y, aWidth, aHeight) {
+var Rectangle = function(x, y, width, height) {
     this.origin = new Point(x, y);
-    this.extent = new Point(aWidth, aHeight);
+    this.extent = new Point(width, height);
 };
 
 Rectangle.constructor = Rectangle;
@@ -91,8 +91,8 @@ Rectangle.prototype = {
         var result = pointOrRect.isContainedWithinRectangle(this);
         return result;
     },
-    isContainedWithinRectangle: function(aRect) {
-        var result = aRect.origin.lessThanEqualTo(this.origin) && aRect.corner().greaterThanEqualTo(this.corner());
+    isContainedWithinRectangle: function(rect) {
+        var result = rect.origin.lessThanEqualTo(this.origin) && rect.corner().greaterThanEqualTo(this.corner());
         return result;
     },
     center: function() {
@@ -101,13 +101,20 @@ Rectangle.prototype = {
         var y = this.origin.y + (this.extent.y / 2);
         return new Point(x, y);
     },
+    insetBy: function(thickness) {
+        return new Rectangle(
+            this.origin.x + thickness,
+            this.origin.y + thickness,
+            this.extent.x - 2 * thickness,
+            this.extent.y - 2 * thickness);
+    },
     union: function(rectangle) {
         //answer a rectangle that contains the receiver and argment rectangles
         var anOrigin = this.origin.min(rectangle.origin),
             aCorner = this.corner().max(rectangle.corner()),
-            aWidth = aCorner.x - anOrigin.x,
-            aHeight = aCorner.y - anOrigin.y,
-            result = new Rectangle(anOrigin.x, anOrigin.y, aWidth, aHeight);
+            width = aCorner.x - anOrigin.x,
+            height = aCorner.y - anOrigin.y,
+            result = new Rectangle(anOrigin.x, anOrigin.y, width, height);
 
         return result;
     },
