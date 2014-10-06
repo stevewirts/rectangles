@@ -1,4 +1,4 @@
-geometry
+rectangles
 ========
 
 this is a simple but usefull library for handling many operations associated with points and rectangles.
