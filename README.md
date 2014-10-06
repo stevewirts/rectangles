@@ -7,5 +7,7 @@ there is a nice example of double dispatch with rectange.contains ...
 see the test suite for usage examples
 
 
+## License
 
+[MIT](http://opensource.org/licenses/MIT)
 
