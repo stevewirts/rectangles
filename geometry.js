@@ -38,7 +38,7 @@ var Point = function(x, y) {
     this.distance = function(point) {
         var dx = point.x - x,
             dy = point.y - y,
-            result = Math.sqrt(dx * dx + (dy * dy));
+            result = Math.sqrt((dx * dx) + (dy * dy));
         return result;
     };
     this.greaterThan = function(point) {

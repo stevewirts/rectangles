@@ -2,55 +2,10 @@ geometry
 ========
 
 this is a simple but usefull library for handling many operations associated with points and rectangles.
-there is a nice example of double dispatch; see the contains function on rectangle...
+there is a nice example of double dispatch with rectange.contains ...
 
-##var geometry = require('./geometry');
-##var rect = new geometry.Rectangle();
-##var point = new geometry.Point();
+see the test suite for usage examples
 
-##point functions....
-
->plus(point)
-
->minus(point)
-
->min(point)
-
->max(point)
-
->distance(point)
-
->greaterThan(point)
-
->lessThan(point)
-
->greaterThanEqualTo(point)
-
->lessThanEqualTo(point)
-
-
-##rectangle functions....
->top()
-
->left()
-
->bottom()
-
->right()
-
->corner()
-
->area()
-
->contains(pointOrRect)
-
->center()
-
->union(rectangle)
-
->intersect(rectangle, ifNoneAction)
-
->intersects(rectangle)
 
 
 
