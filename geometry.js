@@ -1,114 +1,158 @@
 'use strict';
 
 var Point = function(x, y) {
-    this.x = x || 0;
-    this.y = y || 0;
+
+    this.__toString = '(' + x + ',' + y + ')';
+
+    Object.defineProperty(this, 'x', {
+        value: x || 0,
+        writable: false,
+        enumerable: true,
+        configurable: false
+    });
+
+    Object.defineProperty(this, 'y', {
+        value: y || 0,
+        writable: false,
+        enumerable: true,
+        configurable: false
+    });
+
+    this.plus = function(point) {
+        var result = new Point(x + point.x, y + point.y);
+        return result;
+    };
+
+    this.minus = function(point) {
+        var result = new Point(x - point.x, y - point.y);
+        return result;
+    };
+    this.min = function(point) {
+        var result = new Point(Math.min(x, point.x), Math.min(y, point.y));
+        return result;
+    };
+    this.max = function(point) {
+        var result = new Point(Math.max(x, point.x), Math.max(y, point.y));
+        return result;
+    };
+    this.distance = function(point) {
+        var dx = point.x - x,
+            dy = point.y - y,
+            result = Math.sqrt(dx * dx + (dy * dy));
+        return result;
+    };
+    this.greaterThan = function(point) {
+        var result = this.x > point.x && y > point.y;
+        return result;
+    };
+    this.lessThan = function(point) {
+        var result = this.x < point.x && y < point.y;
+        return result;
+    };
+    this.greaterThanEqualTo = function(point) {
+        var result = this.x >= point.x && y >= point.y;
+        return result;
+    };
+    this.lessThanEqualTo = function(point) {
+        var result = this.x <= point.x && y <= point.y;
+        return result;
+    };
+    this.isContainedWithinRectangle = function(rect) {
+        var result = rect.origin.lessThanEqualTo(this) && rect.corner().greaterThanEqualTo(this);
+        return result;
+    };
+
+    this.toString = function() {
+        return this.__toString;
+    };
+
 };
 Point.constructor = Point;
 
-Point.prototype = {
-    plus: function(point) {
-        var result = new Point(this.x + point.x, this.y + point.y);
-        return result;
-    },
-    minus: function(point) {
-        var result = new Point(this.x - point.x, this.y - point.y);
-        return result;
-    },
-    min: function(point) {
-        var result = new Point(Math.min(this.x, point.x), Math.min(this.y, point.y));
-        return result;
-    },
-    max: function(point) {
-        var result = new Point(Math.max(this.x, point.x), Math.max(this.y, point.y));
-        return result;
-    },
-    distance: function(point) {
-        var dx = point.x - this.x,
-            dy = point.y - this.y,
-            result = Math.sqrt(dx * dx + (dy * dy));
-        return result;
-    },
-    toString: function() {
-        return 'Point(' + this.x + ',' + this.y + ')';
-    },
-    greaterThan: function(point) {
-        var result = this.x > point.x && this.y > point.y;
-        return result;
-    },
-    lessThan: function(point) {
-        var result = this.x < point.x && this.y < point.y;
-        return result;
-    },
-    greaterThanEqualTo: function(point) {
-        var result = this.x >= point.x && this.y >= point.y;
-        return result;
-    },
-    lessThanEqualTo: function(point) {
-        var result = this.x <= point.x && this.y <= point.y;
-        return result;
-    },
-    isContainedWithinRectangle: function(rect) {
-        var result = rect.origin.lessThanEqualTo(this) && rect.corner().greaterThanEqualTo(this);
-        return result;
-    }
-};
-
 var Rectangle = function(x, y, width, height) {
-    this.origin = new Point(x, y);
-    this.extent = new Point(width, height);
-};
 
-Rectangle.constructor = Rectangle;
+    var origin = new Point(x, y);
+    var extent = new Point(width, height);
+    this.__toString = '(' + origin.toString() + 'extent:' + extent.toString() + ')';
 
-Rectangle.prototype = {
-    top: function() {
+    Object.defineProperty(this, 'origin', {
+        value: origin,
+        writable: false,
+        enumerable: true,
+        configurable: false
+    });
+
+    Object.defineProperty(this, 'extent', {
+        value: extent,
+        writable: false,
+        enumerable: true,
+        configurable: false
+    });
+
+    this.toString = function() {
+        return this.__toString;
+    };
+
+    this.top = function() {
         return this.origin.y;
-    },
-    left: function() {
+    };
+
+    this.left = function() {
         return this.origin.x;
-    },
-    bottom: function() {
+    };
+
+    this.bottom = function() {
         return this.top() + this.extent.y;
-    },
-    right: function() {
+    };
+
+    this.right = function() {
         return this.left() + this.extent.x;
-    },
-    width: function() {
+    };
+
+    this.width = function() {
         return this.extent.x;
-    },
-    height: function() {
+    };
+
+    this.height = function() {
         return this.extent.y;
-    },
-    corner: function() {
+    };
+
+    this.corner = function() {
         var result = new Point(this.right(), this.bottom());
         return result;
-    },
-    area: function() {
+    };
+
+    this.area = function() {
         return this.extent.x * this.extent.y;
-    },
-    contains: function(pointOrRect) {
+    };
+
+    this.contains = function(pointOrRect) {
         var result = pointOrRect.isContainedWithinRectangle(this);
         return result;
-    },
-    isContainedWithinRectangle: function(rect) {
+    };
+
+    this.isContainedWithinRectangle = function(rect) {
         var result = rect.origin.lessThanEqualTo(this.origin) && rect.corner().greaterThanEqualTo(this.corner());
         return result;
-    },
-    center: function() {
+    };
+
+    this.center = function() {
         //return the center point
         var x = this.origin.x + (this.extent.x / 2);
         var y = this.origin.y + (this.extent.y / 2);
         return new Point(x, y);
-    },
-    insetBy: function(thickness) {
-        return new Rectangle(
+    };
+
+    this.insetBy = function(thickness) {
+        var result = new Rectangle(
             this.origin.x + thickness,
             this.origin.y + thickness,
             this.extent.x - 2 * thickness,
             this.extent.y - 2 * thickness);
-    },
-    union: function(rectangle) {
+        return result;
+    };
+
+    this.union = function(rectangle) {
         //answer a rectangle that contains the receiver and argment rectangles
         var anOrigin = this.origin.min(rectangle.origin),
             aCorner = this.corner().max(rectangle.corner()),
@@ -117,8 +161,9 @@ Rectangle.prototype = {
             result = new Rectangle(anOrigin.x, anOrigin.y, width, height);
 
         return result;
-    },
-    intersect: function(rectangle, ifNoneAction) {
+    };
+
+    this.intersect = function(rectangle, ifNoneAction) {
         //Answer a Rectangle that is the area in which the receiver overlaps with
         //rectangle. Optimized for speed
         var point = rectangle.origin,
@@ -159,8 +204,9 @@ Rectangle.prototype = {
         }
         result = new Rectangle(left, top, right - left, bottom - top);
         return result;
-    },
-    intersects: function(rectangle) {
+    };
+
+    this.intersects = function(rectangle) {
         //return true if we overlap, false otherwise
 
         var rOrigin = rectangle.origin,
@@ -179,11 +225,10 @@ Rectangle.prototype = {
             return false;
         }
         return true;
-    },
-    toString: function() {
-        return 'Rectangle(' + this.origin.x + ', ' + this.origin.y + ', ' + this.extent.x + ', ' + this.extent.y + ')';
-    }
+    };
 };
+
+Rectangle.constructor = Rectangle;
 
 module.exports = {
     Rectangle: Rectangle,
