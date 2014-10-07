@@ -3,13 +3,13 @@
 var files = {
     js: [
         'gruntfile.js',
-        'rectangles.js',
+        'main.js',
         'test/**/*.js'
     ],
 
     jshint: [
         'gruntfile.js',
-        'rectangles.js',
+        'main.js',
         'test/**/*.js',
     ],
 

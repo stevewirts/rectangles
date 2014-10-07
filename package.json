@@ -1,5 +1,5 @@
 {
-  "name": "opengrid",
+  "name": "rectangles",
   "version": "0.0.1",
   "description": "simple classes for doing geometry - influenced by smalltalk",
   "directories": {
