@@ -1,6 +1,6 @@
 {
   "name": "rectangles",
-  "main": "rectangles.js",
+  "main": "main.js",
   "version": "0.0.0",
   "homepage": "https://github.com/stevewirts/rectangles",
   "authors": [
