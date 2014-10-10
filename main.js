@@ -21,7 +21,7 @@
         });
 
         this.plus = function(point) {
-            var result = new Point(x + point.x, y + point.y);
+            var result = new Point(this.x + point.x, y + point.y);
             return result;
         };
 
@@ -60,7 +60,12 @@
             return result;
         };
         this.isContainedWithinRectangle = function(rect) {
-            var result = rect.origin.lessThanEqualTo(this) && rect.corner().greaterThanEqualTo(this);
+            var result =
+                this.x >= rect.origin.x &&
+                this.y >= rect.origin.y &&
+                this.x <= rect.origin.x + rect.extent.x &&
+                this.y <= rect.origin.x + rect.extent.y;
+
             return result;
         };
 
