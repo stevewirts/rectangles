@@ -64,7 +64,7 @@
                 this.x >= rect.origin.x &&
                 this.y >= rect.origin.y &&
                 this.x <= rect.origin.x + rect.extent.x &&
-                this.y <= rect.origin.x + rect.extent.y;
+                this.y <= rect.origin.y + rect.extent.y;
 
             return result;
         };
