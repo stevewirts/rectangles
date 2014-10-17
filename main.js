@@ -170,6 +170,18 @@
             return result;
         };
 
+        this.forEach = function(func) {
+            var xstart = this.origin.x;
+            var xstop = this.origin.x + this.extent.x;
+            var ystart = this.origin.y;
+            var ystop = this.origin.y + this.extent.y;
+            for (var x = xstart; x < xstop; x++) {
+                for (var y = ystart; y < ystop; y++) {
+                    func(x, y);
+                }
+            }
+        };
+
         this.intersect = function(rectangle, ifNoneAction) {
             //Answer a Rectangle that is the area in which the receiver overlaps with
             //rectangle. Optimized for speed
