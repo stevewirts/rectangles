@@ -133,6 +133,18 @@
             return this.extent.x * this.extent.y;
         };
 
+        this.flattenXAt = function(x) {
+            var o = this.origin;
+            var e = this.extent;
+            return new Rectangle(x, o.y, 0, e.y);
+        };
+
+        this.flattenYAt = function(y) {
+            var o = this.origin;
+            var e = this.extent;
+            return new Rectangle(o.x, y, e.x, 0);
+        };
+
         this.contains = function(pointOrRect) {
             var result = pointOrRect.isContainedWithinRectangle(this);
             return result;
