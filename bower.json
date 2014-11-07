@@ -1,10 +1,10 @@
 {
   "name": "rectangles",
   "main": "main.js",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "homepage": "https://github.com/stevewirts/rectangles",
   "authors": [
-    "steve wirts <stevewirts@gmail.com>"
+    "steve wirts <swirts@openfin.com>"
   ],
   "description": "a simple smalltalk inspired package for handling rectangles and points in the context of ui components",
   "keywords": [
